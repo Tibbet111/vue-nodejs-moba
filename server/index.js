@@ -9,6 +9,7 @@ app.use(express.json())
 app.use('/uploads',express.static(__dirname + '/uploads'))
 //数据库链接
 require('./plugins/db')(app)
+//路由
 require('./router/admin')(app)
 
 app.listen(3000,()=>{

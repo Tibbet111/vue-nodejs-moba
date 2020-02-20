@@ -1,3 +1,4 @@
+//装备模型
 const mongoose = require('mongoose')
 
 const schema =  new mongoose.Schema({
