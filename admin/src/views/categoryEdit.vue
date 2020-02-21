@@ -45,10 +45,12 @@ export default {
         })
         this.$router.push('/categories/list')     
       },
+      //修改获取数据
       async fetch(){
         const res = await this.$http.get(`/rest/categories/${this.id}`)
         this.model = res.data
       },
+      //获取分类
       async fetchParents(){
         const res = await this.$http.get(`/rest/categories`)
         this.parents = res.data
