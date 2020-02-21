@@ -163,6 +163,7 @@ export default {
       });
       this.$router.push("/heros/list");
     },
+    //显示修改的英雄信息
     async fetch() {
       const res = await this.$http.get(`/rest/heros/${this.id}`);
       this.model = Object.assign({}, this.model, res.data);
@@ -170,10 +171,12 @@ export default {
     afterUpload(res) {
       this.model.avatar = res.url;
     },
+    //获取英雄分类
     async fetchCategories() {
       const res = await this.$http.get("/rest/categories");
       this.categories = res.data;
     },
+    //获取装备
     async fetchItems() {
       const res = await this.$http.get("/rest/items");
       this.items = res.data;
@@ -188,27 +191,5 @@ export default {
 </script>
 
 <style>
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.avatar-uploader .el-upload:hover {
-  border-color: #409eff;
-}
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 5rem;
-  height: 5rem;
-  line-height: 5rem;
-  text-align: center;
-}
-.avatar {
-  width: 5rem;
-  height: 5rem;
-  display: block;
-}
+
 </style>

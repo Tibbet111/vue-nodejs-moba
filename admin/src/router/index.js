@@ -49,6 +49,32 @@ const routes = [
         component:()=>import('../views/heroEdit.vue'),
         props:true
       },
+      {
+        path:'/articles/create',
+        component:()=>import('../views/articleEdit.vue')
+      },
+      {
+        path:'/articles/list',
+        component:()=>import('../views/articleList.vue')
+      },
+      {
+        path:'/articles/edit/:id',
+        component:()=>import('../views/articleEdit.vue'),
+        props:true
+      },
+      {
+        path:'/ads/create',
+        component:()=>import('../views/adEdit.vue')
+      },
+      {
+        path:'/ads/list',
+        component:()=>import('../views/adList.vue')
+      },
+      {
+        path:'/ads/edit/:id',
+        component:()=>import('../views/adEdit.vue'),
+        props:true
+      }
     ]
   },
   
