@@ -6,6 +6,12 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path:'/login',
+    name:'login',
+    component:()=>import('../views/login.vue'),
+    meta:{isPublic : true}
+  },
+  {
     path: '/',
     name: 'main',
     component: ()=>import('../views/main.vue'),
@@ -74,6 +80,19 @@ const routes = [
         path:'/ads/edit/:id',
         component:()=>import('../views/adEdit.vue'),
         props:true
+      },
+      {
+        path:'/admin_users/create',
+        component:()=>import('../views/adminUserEdit.vue')
+      },
+      {
+        path:'/admin_users/list',
+        component:()=>import('../views/adminUserList.vue')
+      },
+      {
+        path:'/admin_users/edit/:id',
+        component:()=>import('../views/adminUserEdit.vue'),
+        props:true
       }
     ]
   },
@@ -82,6 +101,13 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to,from,next)=>{
+  if(!to.meta.isPublic && !localStorage.token){
+    return next('/login')
+  }
+  next()
 })
 
 export default router
