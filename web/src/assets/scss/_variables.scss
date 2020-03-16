@@ -8,8 +8,11 @@ $colors:(
     "gray-1":#666,
     "light":#f9f9f9,
     "dark-1":#343440,
-    "info":#4b67af
+    "info":#4b67af,
+    "light-1":#d4d9de,
 );
+
+$border-color:map-get($map: $colors, $key:'light-1' );
 
 //font size
 $base-font-size:1rem;

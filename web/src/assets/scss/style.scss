@@ -40,7 +40,7 @@ a{
 }
 
     @each $sizeKey,$size in $font-sizes {
-    fs-#{$sizeKey}{
+    .fs-#{$sizeKey}{
         font-size: $size * $base-font-size;
     }        
 }
@@ -60,6 +60,10 @@ a{
 
 .flex-column{
     flex-direction: column;
+}
+
+.flex-wrap{
+    flex-wrap: wrap;
 }
 
 
@@ -121,11 +125,40 @@ a{
 
     //nav
     .nav{
+        display: flex;
         .nav-item{
           border-bottom:3px solid transparent;  
-          padding-bottom: 0.2rem;  
+          padding-bottom: 0.2rem; 
+           
           &.active{
-            border-bottom:3px solid #fff;
+            color: map-get($map: $colors, $key: 'primary');
+            border-bottom-color:map-get($map: $colors, $key: 'primary');
         }
       }
+      &.nav-inverse{
+          .nav-item{
+              color:map-get($map: $colors, $key: 'white');
+              &.active{
+                 border-bottom-color:map-get($map: $colors, $key: 'white'); ; 
+              }
+          }
+      }
+    }
+
+    
+    //sprits
+    .sprite{
+        background: url(../image/index.png) no-repeat 0 0;
+        background-size: 28.8462rem;
+        display: inline-block;
+        &.sprite-news{
+            width: 1.7692rem;
+            height: 1.5385rem;
+            background-position: 63.546% 15.517%;
+        }
+        &.sprite-arrow{
+            width: 0.7692rem;
+            height: 0.7692rem;
+            background-position: 38.577% 52.076%;
+        }
     }
