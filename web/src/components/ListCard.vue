@@ -3,12 +3,14 @@
    <div class="nav jc-between">
         <div class="nav-item" :class="{active: active === index}"
             v-for="(category,index) in categories" :key="index"
-         @click="active=index">
+         @click="$refs.swiper.swiper.slideTo(index)">
           <div class="nav-link">{{category.name}}</div>
         </div>
-      </div>
+    </div>
       <div class="pt-3">
-        <swiper>
+        <swiper ref="swiper" @slide-change="()=>active=$refs.swiper.swiper.realIndex"
+          :options="{autoHeight:true}"
+          >
         <swiper-slide v-for="(item,i) in categories" :key="i">
           <slot name="items" :category="item">
               
@@ -33,6 +35,9 @@ export default {
     };
   },
   methods: {},
+  mounted() {
+    console.log(this.$refs.swiper);
+  },
 };
 </script>
 

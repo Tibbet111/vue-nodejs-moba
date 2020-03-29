@@ -13,6 +13,8 @@ app.use('/uploads',express.static(__dirname + '/uploads'))
 require('./plugins/db')(app)
 //路由
 require('./router/admin')(app)
+//手机端路由
+require('./router/web')(app)
 
 app.listen(3000,()=>{
     console.log('http://localhost:3000');

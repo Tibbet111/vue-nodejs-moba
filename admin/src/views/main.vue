@@ -63,7 +63,7 @@
     </el-header>
     
     <el-main>
-      <router-view>
+      <router-view :key="$route.path">
           
       </router-view>
     </el-main>
@@ -94,7 +94,6 @@
       logOut(){
         localStorage.removeItem('token')
         this.$router.push('/login')
-        console.log(11);
       }
     }
   };

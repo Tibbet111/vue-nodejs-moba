@@ -27,15 +27,26 @@
   <!-- end of menu -->
  <m-list-card icon="Menu" title="新闻资讯" :categories="newCats">
    <template #items="{category}">
-   <div class="py-2 d-flex jc-between" v-for="(news,i) in category.newsList" :key="i">
-      <span>{{news.categoryName}}</span>
+   <div class="py-2 fs-lg d-flex jc-between" v-for="(news,i) in category.newsList" :key="i">
+      <span class="text-info">[{{news.categoryName}}]</span>
       <span class="px-1">|</span>
-      <span class="flex-1">{{news.title}}</span>
-      <span>{{news.date}}</span>
+      <span class="flex-1 text-dark-1 text-ellipsis">{{news.title}}</span>
+      <span class="text-gray-1 fs-sm">{{news.createdAt | date}}</span>
     </div>
     </template>
  </m-list-card>
- <m-card icon="yingxiong" title="英雄列表"></m-card>
+ <!-- 英雄列表 -->
+ <m-list-card icon="yingxiong" title="英雄列表" :categories="heroCats">
+   <template #items="{category}">
+     <div class="d-flex flex-wrap" style="margin:0 -0.5rem">
+       <div class="p-2 text-center" style="width:20%;"
+       v-for="(hero,i) in category.heroList" :key="i">
+        <img :src="hero.avatar" class="w-100">
+      <div>{{hero.name}}</div>
+    </div>
+     </div>
+    </template>
+ </m-list-card>
   <p>555</p>
   <p>555</p>
   <p>555</p>
@@ -47,52 +58,18 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
 export default {
-  name: '',
+  filters:{
+    date(val){
+      return dayjs(val).format('MM/DD')
+    }
+  },
+  name: 'home',
   data() {
     return {
-      newCats:[
-        {
-          name:'热门',
-          newsList: new Array(5).fill(1).map(v =>({
-              categoryName :'[公告]',
-              title: '全服不停机公告',
-              date: '06/01'
-          }))
-        },
-        {
-          name:'新闻',
-          newsList: new Array(5).fill(1).map(v =>({
-              categoryName :'[新闻]',
-              title: '全服不停机公告',
-              date: '06/01'
-          }))
-        },
-        {
-          name:'公告',
-          newsList: new Array(5).fill(1).map(v =>({
-              categoryName :'[公告]',
-              title: '全服不停机公告',
-              date: '06/01'
-          }))
-        },
-        {
-          name:'活动',
-          newsList: new Array(5).fill(1).map(v =>({
-              categoryName :'[公告]',
-              title: '全服不停机公告',
-              date: '06/01'
-          }))
-        },
-        {
-          name:'赛事',
-          newsList: new Array(5).fill(1).map(v =>({
-              categoryName :'[公告]',
-              title: '全服不停机公告',
-              date: '06/01'
-          }))
-        }
-      ],
+      newCats:[],
+      heroCats:[],
       swiperOption:{
         pagination: {
             el: '.pagination-home',
@@ -106,7 +83,21 @@ export default {
       }
     };
   },
-  methods: {},
+  methods: {
+    async fetchNewsCats(){
+    const res = await this.$http.get('/news/list')
+    this.newCats = res.data
+    },
+    async fetchHeroCats(){
+      const res = await this.$http.get('/heroes/list')
+      this.heroCats =res.data
+    }
+  },
+  created() {
+    this.fetchNewsCats()
+    this.fetchHeroCats()
+  },
+  
 };
 </script>
 

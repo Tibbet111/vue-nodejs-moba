@@ -1,4 +1,4 @@
-@import './variables';
+@import './_variables';
 
 //reset
 *{
@@ -43,6 +43,14 @@ a{
     .fs-#{$sizeKey}{
         font-size: $size * $base-font-size;
     }        
+}
+
+//文本溢出省略号
+.text-ellipsis{
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 //width,height
