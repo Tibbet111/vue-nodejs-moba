@@ -20,6 +20,9 @@ a{
     color: #999;
 }
 
+p{
+    line-height: 1.5rem;
+}
 
 
 @each $colorKey,$color in $colors {
@@ -129,6 +132,21 @@ a{
         border-radius: 0.1538rem;
         font-size: map-get($map: $font-sizes, $key:'sm' ) * $base-font-size;
         padding: 0.2rem 0.6rem;
+        &.btn-lg{
+            i{
+                color: map-get($map: $colors, $key: 'primary');
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin-right: 0.5rem;
+            }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: map-get($map: $colors, $key: 'white-1');
+            border: 1px solid map-get($map: $colors, $key: 'white-2');
+            padding: 0.8rem 0;
+            font-size: 1rem;
+        }
     }
 
     //nav
@@ -168,5 +186,12 @@ a{
             width: 0.7692rem;
             height: 0.7692rem;
             background-position: 38.577% 52.076%;
+        }
+    }
+
+    //borders
+    @each $dir in (top,right,left,bottom) {
+        .border-#{$dir}{
+            border-#{$dir}:1px solid $border-color
         }
     }

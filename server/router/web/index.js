@@ -93,7 +93,7 @@ module.exports = app =>{
         const parent = await Category.findOne({
             name:'英雄分类'
         })
-        //聚合查询获取新闻分类下的文章
+        //聚合查询获取英雄职业
         const cats = await Category.aggregate([
             {$match: {parent:parent._id}},      //数据过滤分类
             {
@@ -116,6 +116,18 @@ module.exports = app =>{
 
         res.send(cats)
 
+    })
+
+    //文章详情
+    router.get('/articles/:id',async (req,res)=>{
+        const data = await Article.findById(req.params.id)
+        res.send(data)
+    })
+
+    router.get('/heroes/:id',async (req,res)=>{
+        const data = await Hero.findById(req.params.id)
+        .populate('categories items1 items2 partners.hero').lean()
+        res.send(data)
     })
 
     app.use('/web/api',router)

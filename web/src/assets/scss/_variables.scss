@@ -2,6 +2,8 @@
 $colors:(
     "primary":#db9e3f,
     "white":#fff,
+    "white-1":#fcfcfc,
+    "white-2":#eceef0,
     "black":#000,
     "dark":#222,
     "gray":#999,
@@ -10,6 +12,9 @@ $colors:(
     "dark-1":#343440,
     "info":#4b67af,
     "light-1":#d4d9de,
+    "blue":#4394E4,
+    "blue-1":#1f3695,
+    "danger":#791a16
 );
 
 $border-color:map-get($map: $colors, $key:'light-1' );
